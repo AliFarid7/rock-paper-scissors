@@ -1,15 +1,28 @@
-const getComputerChoice = () => {
-    let randomNumber = Math.floor(Math.random() * 3);
-    switch (randomNumber) {
-    case 0:
-    return "rock";
-    break;
-    case 1:
-    return "scissors";
-    break;
-    case 2:
-    return "paper";
-    break;
-    };
-    }
-    console.log(getComputerChoice());
+function computerPlay() {
+  const pick = ['rock', 'paper', 'scissors'];
+  return pick[Math.floor(Math.random() * pick.length)];
+}
+
+function playRound(playerSelection, computerSelection) {
+  if (playerSelection === computerSelection) {
+    return `It's a tie! you both picked ${playerSelection}`;
+  } else if (playerSelection === "rock" && computerSelection === "scissors") {
+    return "You win! Rock beats Scissors";
+  } else if (playerSelection === "paper" && computerSelection === "rock") {
+    return "You win! Paper beats Rock";
+  } else if (playerSelection === "scissors" && computerSelection === "paper") {
+    return "You win! Scissors beats Paper";
+  } else {
+    return `You lose! ${computerSelection} beats ${playerSelection}`;
+  }
+}
+
+const playerSelection = prompt("Please pick between 'Rock, Paper, Scissors'").toLowerCase();
+const computerSelection = computerPlay();
+
+function game(){
+  for (let i = 0; i < 5; i++) {
+    console.log(playRound());
+  }
+}
+console.log(playRound(playerSelection, computerSelection));
